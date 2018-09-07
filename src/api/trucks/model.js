@@ -1,23 +1,42 @@
 import mongoose, { Schema } from 'mongoose'
 
+const pointSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ['Point'],
+    required: true
+  },
+  coordinates: {
+    type: [Number],
+    required: true
+  }
+});
+
 const trucksSchema = new Schema({
   name: {
     type: String
   },
-  locations: {
-    type: String
-  },
+  locations: [{
+    type: pointSchema,
+    required: true
+  }],
   description: {
     type: String
   },
-  reviews: {
-    type: String
-  },
+  reviews: [{
+    type: Schema.Types.Mixed
+  }],
   owner: {
     type: String
   },
   hours: {
-    type: Schema.Types.Mixed
+    monday: String,
+    tuesday: String,
+    wednesday: String,
+    thursday: String,
+    friday: String,
+    Saturday: String,
+    Sunday: String
   }
 }, {
   timestamps: true,
